@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const response = await fetch("https://randomuser.me/api/?nat=us");
+const data = await response.json();
+const randomUser = data.results[0];
+const pageTitle = "Fetch Demo";
+---
+
+<!-- Data fetched at build can be rendered in HTML -->
+<BaseLayout pageTitle={pageTitle}>
+    <h2>User - Fetched at Build time / Server side (In SSR mode)</h2>
+    <h2 class="user">{randomUser.name.first} {randomUser.name.last}</h2>
+    <h2>User - Fetched client side</h2>
+    <div class="user" id="user-container">Loading...</div>
+    <script is:inline>
+        async function fetchUser() {
+            const response = await fetch("https://randomuser.me/api/?nat=us");
+            const data = await response.json();
+            const user = data.results[0];
+            const userContainer =
+                document.getElementById("user-container");
+            userContainer.innerHTML = `<h2>${user.name.first} ${user.name.last}</h2>`;
+        }
+        fetchUser();
+    </script>
+</BaseLayout>

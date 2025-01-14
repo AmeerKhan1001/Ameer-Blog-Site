@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const pageTitle = "Multi Component Page";
+import PreactCounter from "../components/preact/PreactCounter";
+import SvelteCounter from "../components/svelte/SvelteCounter.svelte";
+import ReactCounter from "../components/react/ReactCounter";
+import AnotherReactCounter from "../components/react/ReactCounter2";
+import AstroCounter from "../components/AstroCounter.astro";
+
+---
+
+<BaseLayout pageTitle={pageTitle}>
+    <!-- client:load - Load on page load --> 
+    <PreactCounter client:load/>
+    <SvelteCounter client:load/>
+    <ReactCounter client:load/>
+    <AstroCounter />
+    <!-- client:visible - Load once component is about to visible in user's viewport --> 
+    <p class="h-screen"></p>
+    <p class="h-screen"></p>
+    <AnotherReactCounter client:visible/>
+</BaseLayout>
