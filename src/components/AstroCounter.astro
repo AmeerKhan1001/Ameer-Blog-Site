@@ -1,3 +1,6 @@
+---
+const {title} = Astro.props;
+---
 <script is:inline>
     let count = 0;
 
@@ -20,7 +23,7 @@
 </script>
 
 <div>
-    <h1>Astro Counter: <span id="counter-value">0</span></h1>
+    <h1>{title} Counter: <span id="counter-value">0</span></h1>
     <button onclick="decrement()">-</button>
     <button onclick="increment()">+</button>
 </div>

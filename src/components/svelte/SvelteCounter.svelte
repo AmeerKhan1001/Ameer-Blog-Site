@@ -1,4 +1,5 @@
 <script>
+  export let title;
   let count = 0;
 
   const increment = () => {
@@ -11,7 +12,7 @@
 </script>
 
 <div>
-  <h1>Svelte Counter: {count}</h1>
+  <h1>{title} Counter: {count}</h1>
   <button on:click={decrement}>-</button>
   <button on:click={increment}>+</button>
 </div>
