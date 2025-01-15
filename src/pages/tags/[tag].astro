@@ -3,10 +3,19 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogPost from '../../components/BlogPost.astro';
 
 export async function getStaticPaths() {
+  // This line finds and loads all .md (Markdown) files from the ../posts/ directory.
   const allPosts = Object.values(import.meta.glob('../posts/*.md', { eager: true }));
 
+  // This extracts all the tags from the posts, combines them into one array, and removes duplicates using Set.
   const uniqueTags = [...new Set(allPosts.map((post: any) => post.frontmatter.tags).flat())];
 
+  /*
+  For each unique tag:
+  It filters the posts to find only those with that tag.
+  It returns an object with:
+  params: { tag }: Defines the route parameter for this tag.
+  props: { posts: filteredPosts }: Passes the filtered posts as data to the route.
+  */
   return uniqueTags.map((tag) => {
     const filteredPosts = allPosts.filter((post: any) => post.frontmatter.tags.includes(tag));
     return {

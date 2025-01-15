@@ -10,12 +10,12 @@ import AstroCounter from "../components/AstroCounter.astro";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-    <!-- client:load - Load on page load --> 
+    <!-- client:load - Load and hydrate the component JavaScript immediately on page load --> 
     <PreactCounter title="Preact" client:load/>
     <SvelteCounter title="Svelte" client:load/>
     <ReactCounter title="React" client:load/>
     <AstroCounter title="Astro" />
-    <!-- client:visible - Load once component is about to visible in user's viewport --> 
+    <!-- client:visible - Load and hydrate the component, once it is about to visible in user's viewport --> 
     <p class="h-screen"></p>
     <p class="h-screen"></p>
     <AnotherReactCounter client:visible/>
